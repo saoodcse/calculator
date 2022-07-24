@@ -39,10 +39,10 @@ grid.addEventListener("click", function (e) {
         if (str === "0" && buttonValues === "*") {
           str += buttonValues;
           input.value = str;
-        } else if (str === "0" && buttonValues === "*") {
+        } else if (str === "0" && buttonValues === "+") {
           str += buttonValues;
           input.value = str;
-        } else if (str === "0" && buttonValues === "*") {
+        } else if (str === "0" && buttonValues === "-") {
           str += buttonValues;
           input.value = str;
         } else if (str === "0") {
