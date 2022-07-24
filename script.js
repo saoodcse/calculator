@@ -2,6 +2,7 @@ const input = document.querySelector("#input");
 
 const grid = document.querySelector(".grid-4-col");
 let str = "";
+let copystr = "";
 
 grid.addEventListener("click", function (e) {
   input.style.backgroundColor = "black";
@@ -10,23 +11,35 @@ grid.addEventListener("click", function (e) {
     let buttonValues = e.target.innerHTML;
     switch (buttonValues) {
       case "c":
-        str = "";
-        input.value = str;
+        str = copystr = "";
+
+        input.value = copystr;
         break;
       case "←":
         console.log(buttonValues);
         str = str.slice(0, -1);
-        input.value = str;
+        copystr = copystr.slice(0, -1);
+        input.value = copystr;
+        break;
+      case "÷":
+        copystr += buttonValues;
+        input.value = copystr;
+        str += "/";
+        break;
+      case "×":
+        copystr += buttonValues;
+        input.value = copystr;
+        str += "*";
         break;
       case "=":
         try {
           let result = eval(str);
           if (Number.isInteger(result)) {
-            str = "" + result;
-            input.value = str;
+            copystr = str = "" + result;
+            input.value = copystr;
           } else {
-            str = "" + parseFloat(result).toFixed(2);
-            input.value = str;
+            copystr = str = "" + parseFloat(result).toFixed(2);
+            input.value = copystr;
           }
         } catch (error) {
           input.style.backgroundColor = "red";
@@ -36,21 +49,26 @@ grid.addEventListener("click", function (e) {
         break;
 
       default:
-        if (str === "0" && buttonValues === "*") {
+        if (str === "0" && buttonValues === "×") {
           str += buttonValues;
-          input.value = str;
+          copystr += buttonValues;
+          input.value = copystr;
         } else if (str === "0" && buttonValues === "+") {
           str += buttonValues;
-          input.value = str;
+          copystr += buttonValues;
+          input.value = copystr;
         } else if (str === "0" && buttonValues === "-") {
           str += buttonValues;
-          input.value = str;
+          copystr += buttonValues;
+          input.value = copystr;
         } else if (str === "0") {
           str = buttonValues;
-          input.value = str;
+          copystr = buttonValues;
+          input.value = copystr;
         } else {
           str += buttonValues;
-          input.value = str;
+          copystr += buttonValues;
+          input.value = copystr;
           break;
         }
     }
