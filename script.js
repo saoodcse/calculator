@@ -22,10 +22,10 @@ grid.addEventListener("click", function (e) {
         try {
           let result = eval(str);
           if (Number.isInteger(result)) {
-            str = result;
-            input.value = result;
+            str = "" + result;
+            input.value = str;
           } else {
-            str = parseFloat(result).toFixed(2);
+            str = "" + parseFloat(result).toFixed(2);
             input.value = str;
           }
         } catch (error) {
@@ -36,7 +36,16 @@ grid.addEventListener("click", function (e) {
         break;
 
       default:
-        if (str === "0") {
+        if (str === "0" && buttonValues === "*") {
+          str += buttonValues;
+          input.value = str;
+        } else if (str === "0" && buttonValues === "*") {
+          str += buttonValues;
+          input.value = str;
+        } else if (str === "0" && buttonValues === "*") {
+          str += buttonValues;
+          input.value = str;
+        } else if (str === "0") {
           str = buttonValues;
           input.value = str;
         } else {
